@@ -45,6 +45,7 @@ export async function Chat() {
           name="message"
         />
         <button className="btn btn-primary">Send</button>
+        <button className="btn btn-primary">Fetch</button>
       </form>
     </article>
   );

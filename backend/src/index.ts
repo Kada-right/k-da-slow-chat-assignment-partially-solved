@@ -1,6 +1,7 @@
 import express, { Request, Response , Application } from 'express';
 import cors from 'cors';
 import path from "path";
+import fs from 'fs';
 
 const messagesFilePath= path.resolve(__dirname, '../db/messages.json');
 
@@ -15,7 +16,6 @@ app.use(
   }),
 );
 
-
 app.use(express.json())
 
 app.get('/', (req: Request, res: Response) => {
@@ -24,18 +24,21 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/messages', (req: Request, res:Response) => {
-  res.json(messages);
+ //res.json(messages);
   // Skicka tillbaka alla message som vi har lagrat; vart? db/fil,
   //
 })
 
 app.post('/messages', (req: Request, res:Response) => {
-  //fs.writeFileSync(messagesFilePath  , JSON.stringify([user]));
+  const testPerson =  {
+    "name": "Karl-Leo"
+  };
+  
+  fs.appendFileSync(messagesFilePath  , JSON.stringify(testPerson));
   // Req.body från frontend, värdet från input field, skickas när man klickar submit. 
   // Lagra det meddelandet i våran db/fil
-  res.json("Skikade ett message");
-})
-
+  res.status(201).json(testPerson);
+});
 
 app.listen(port, () => {
   console.log(`Server is running 🚀 at http://localhost:${port}\n'Cmd + click' the link above ☝️ to open it in the browser.`);

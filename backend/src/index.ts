@@ -1,5 +1,8 @@
 import express, { Request, Response , Application } from 'express';
 import cors from 'cors';
+import path from "path";
+
+const messagesFilePath= path.resolve(__dirname, '../db/messages.json');
 
 const app: Application = express();
 const port = 3001;
@@ -12,22 +15,12 @@ app.use(
   }),
 );
 
-const messages = [
-  {
-    name: "Leo",
-  },
-  {
-    name: "Carl",
-  },
-  {
-    name: "Anton",
-  }
-]
 
 app.use(express.json())
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hej från backend');
+  //favoritedUsers = JSON.parse(fs.readFileSync(messagesFilePath  , 'utf8'));
 });
 
 app.get('/messages', (req: Request, res:Response) => {
@@ -37,6 +30,7 @@ app.get('/messages', (req: Request, res:Response) => {
 })
 
 app.post('/messages', (req: Request, res:Response) => {
+  //fs.writeFileSync(messagesFilePath  , JSON.stringify([user]));
   // Req.body från frontend, värdet från input field, skickas när man klickar submit. 
   // Lagra det meddelandet i våran db/fil
   res.json("Skikade ett message");

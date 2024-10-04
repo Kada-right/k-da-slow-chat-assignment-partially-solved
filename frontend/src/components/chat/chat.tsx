@@ -1,8 +1,4 @@
 
-Carl Bieneck
-  2:51 PM
-import { Message } from "./message";
-import { SendButton } from "./button";
 async function getCurrentUser() {
   return { id: 1, name: "Obi-Wan Kenobi" };
 }

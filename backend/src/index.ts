@@ -12,11 +12,35 @@ app.use(
   }),
 );
 
+const messages = [
+  {
+    name: "Leo",
+  },
+  {
+    name: "Carl",
+  },
+  {
+    name: "Anton",
+  }
+]
+
 app.use(express.json())
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hej från backend');
 });
+
+app.get('/messages', (req: Request, res:Response) => {
+  res.json(messages);
+  // Skicka tillbaka alla message som vi har lagrat; vart? db/fil,
+  //
+})
+
+app.post('/messages', (req: Request, res:Response) => {
+  // Req.body från frontend, värdet från input field, skickas när man klickar submit. 
+  // Lagra det meddelandet i våran db/fil
+  res.json("Skikade ett message");
+})
 
 
 app.listen(port, () => {
